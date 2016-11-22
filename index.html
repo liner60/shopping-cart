@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, user-scalable=no">
+<title>添加购物车效果</title>
+<script src="jquery-3.1.0.js"></script>
+<style>
+*{margin:0;padding:0;}
+.clearfix:after{content:"";display:block;width:0;clear:both;}
+.clearfix{zoom:1;}
+html{font-size:20px;}
+.main{width:45rem;margin:3.5rem auto;text-align:center;}
+.shopBox{width:21%;margin:0 0.5%;border:1px solid #ccc;padding:0 1% 1.5rem;float:left;position:relative;}
+.shopBox:hover{border:1px solid #f57f20;}
+.shopImg{width:100%;}
+.shopPrice{color:#ff334f;font-size:0.9rem;margin:20px 0 25px;}
+.shopInfo{font-size:0.65rem;text-align:left;line-height:0.9rem;margin-bottom:3rem;}
+.shopAdd{width:75%;height:1.5rem;line-height:1.5rem;border-radius:0.4rem;font-size:0.9rem;margin:0 auto;cursor:pointer;color:#FFF;background:linear-gradient(180deg,#f99e1b,#f57f20);border:1px solid #f57f20}
+.sidebar{height:100%;width:2rem;background:#000;position:absolute;top:0;right:0;}
+.shopcar{position:absolute;top:13rem;width:100%;left:0;text-align:center;color:#fff;font-size:0.6rem;line-height:1rem;}
+.remind{width:12.5rem;height:2.5rem;background:#336600;color:#fff;position:absolute;top:17rem;left:-12.5rem;display:none;}
+.add{color:#881a8b;box-shadow:0 1px 2px #ccc;background:#fff;border:0;}
+.smImg{width:2rem;position:absolute;bottom:-2rem;left:50%;margin-left:-1rem;opacity:0;z-index:10;}
+@media screen and (max-width:950px){html{font-size:18px;}.shopBox{width:44%;}.main{width:30rem;}.shopBox{margin-bottom:1rem;padding:0 2% 1.5rem;}}
+@media screen and (max-width:620px){.shopBox{width:94%;}.main{width:15rem;}}
+@media screen and (max-width:350px){.main{width:90%}}
+</style>
+</head>
+<body>
+<div class="main clearfix">
+   <div class="shopBox">
+      <img src="lg.jpg" class="shopImg">
+      <div class="shopPrice">
+          ¥3499.00
+      </div>
+      <div class="shopInfo">
+          LG 49LF5400-CA 49寸IPS硬屏富贵招财铜钱设计
+      </div>
+      <div class="shopAdd">
+         加入购物车
+      </div>
+   </div>
+   <div class="shopBox">
+      <img src="hs.jpg" class="shopImg">
+      <div class="shopPrice">
+          ¥3499.00
+      </div>
+      <div class="shopInfo">
+          LG 49LF5400-CA 49寸IPS硬屏富贵招财铜钱设计
+      </div>
+      <div class="shopAdd">
+         加入购物车
+      </div>
+   </div>
+   <div class="shopBox">
+      <img src="cw.jpg" class="shopImg">
+      <div class="shopPrice">
+          ¥3499.00
+      </div>
+      <div class="shopInfo">
+          LG 49LF5400-CA 49寸IPS硬屏富贵招财铜钱设计
+      </div>
+      <div class="shopAdd">
+         加入购物车
+      </div>
+   </div>
+   <div class="shopBox">
+      <img src="ls.jpg" class="shopImg">
+      <div class="shopPrice">
+          ¥3499.00
+      </div>
+      <div class="shopInfo">
+          LG 49LF5400-CA 49寸IPS硬屏富贵招财铜钱设计
+      </div>
+      <div class="shopAdd">
+         加入购物车
+      </div>
+   </div>
+</div>
+<div class="sidebar">
+   <div class="shopcar">
+      购<br/>物<br/>车<br/>
+    </div>
+    <div class="remind">
+      已成功加入购物车！
+    </div>
+</div>
+<script>
+$(document).ready(function(){
+	$(".shopAdd").bind("click",function(){
+		if(!$(this).hasClass('add')){
+			$(this).addClass('add');
+			var shopImg=$(this).parent().children(".shopImg").clone().addClass("smImg");
+			$(this).parent().append(shopImg);	
+			 // alert(1);
+			 var imgLeft=shopImg.offset().left;
+			 var width=$(window).width();
+			 var imgTop=shopImg.offset().top;
+			 var disX=width-imgLeft+100;
+			 var disY=4*imgTop/5;
+			// alert(dis);
+			  shopImg.animate({
+				opacity:1,left:2*disX/3,bottom:5*disY/6,width:'3rem'
+		      },450,"linear");
+			  shopImg.animate({
+				opacity:1,left:3*disX/4,bottom:disY,width:'3rem'
+			  },120,"linear");
+			  shopImg.animate({
+				opacity:1,left:4*disX/5,bottom:5*disY/6,width:'3rem'
+			  },120,"linear");
+			  shopImg.animate({
+				  opacity:0,left:disX,bottom:3*disY/5,width:'1rem'
+			  },200,"linear");
+			 setTimeout(function(){ 
+			    $(".remind").show().delay(200).fadeOut(800)
+			},1000);
+			  
+		}	
+	})
+})
+</script>
+</body>
+</html>
